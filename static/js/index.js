@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch((error) => {
       alert('Please login');
-      window.open('/login.html', '_self');
+      window.open('/eie4432_project/static/login.html', '_self');
     });
 
   const logout = document.getElementById('logout-button');
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (confirm) {
       try {
         await fetch('/auth/logout');
-        window.open('/login.html', '_self');
+        window.open('/eie4432_project/static/login.html', '_self');
       } catch (error) {
         console.error(error);
       }
