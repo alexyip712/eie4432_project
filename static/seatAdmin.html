@@ -1,0 +1,1864 @@
+<!doctype html>
+<!--21019565D 21089804d-->
+<html>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+    <title>21019565d_21089804d_Concert Ticket Selling System</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"></script>
+    <script src="js/seatAdmin.js"></script>
+    <style>
+      .error {
+        border: 2px solid red !important;
+      }
+      .error-free {
+        border: 2px solid green !important;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="p-3 bg-success text-warning text-center">
+      <h1>Concert Ticket Selling System Seat Management </h1>
+    </header>
+    <!--nav class="navbar navbar-expand-lg navbar-light bg-light">
+      
+      <div class="container-fluid">
+        
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarScroll"
+          aria-controls="navbarScroll"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarScroll">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item px-2">
+              <a class="nav-link" href="login.html">Home</a>
+            </li>
+            <li class="nav-item px-2">
+              <a class="nav-link active fw-bold link-success" aria-current="page" href="book.html">Ticket Booking</a>
+            </li>
+            <li class="nav-item px-2">
+              <a class="nav-link" href="event.html">Event Dashboard</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav-->
+    <main>
+      <div class="container py-4">
+        <form method="POST" id="order">
+          <div>
+            <!--div class="row mb-3">
+              <div>
+                <label for="exampleFormControlInput1" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" alt="name" required />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div>
+                <label for="exampleFormControlInput1" class="form-label">Phone No:</label>
+                <input type="text" class="form-control" id="phone" name="phone" alt="phone" required />
+              </div>
+            </div-->
+            <div class="row mb-3">
+              <div>
+                <label for="event">Venues:</label>
+                <select id="event" name="event" class="form-select">
+                  <option selected value="default">Please Select</option>
+                  <option value="tw">Tsuen Wan Town Hall</option>
+                  <option value="hk">Hong Kong City Hall</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="container text-start py-4">
+              <svg class="square" width="990" height="50">
+                <rect
+                  width="100%"
+                  height="100%"
+                  fill="#444444"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  
+                  class="one" />
+                <text
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="495"
+                  y="25"
+                  fill="#ffd600"
+                  
+                  class="one">
+                  Stage
+                </text>
+              </svg>
+            </div>
+
+            <div class="container text-start py-4">
+              <div class="container text-start py-4">
+              <svg class="circle d-none" width="1200" height="400" id="seatstw">
+                <circle
+                  cursor="pointer"
+                  cx="40"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  
+                  class="one"
+                  onclick="selectSeat('A1')" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="40"
+                  y="50"
+                  fill="#ffd600"
+                  
+                  class="one"
+                  onclick="selectSeat('A1')">
+                  A1
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="140"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="two" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="140"
+                  y="50"
+                  fill="#000000"
+                  
+                  class="two">
+                  A2
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="240"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('A3')"
+                  class="three" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="240"
+                  y="50"
+                  fill="#ffd600"
+                  onclick="selectSeat('A3')"
+                  class="three">
+                  A3
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="340"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="340"
+                  y="50"
+                  fill="#000000"
+                  
+                  class="four">
+                  A4
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="440"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="440"
+                  y="50"
+                  fill="#000000"
+                  
+                  class="four">
+                  A5
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="540"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="540"
+                  y="50"
+                  fill="#000000"
+                  
+                  class="four">
+                  A6
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="640"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="640"
+                  y="50"
+                  fill="#000000"
+                  
+                  class="four">
+                  A7
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="740"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('A8')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="740"
+                  y="50"
+                  fill="#ffd600"
+                  onclick="selectSeat('A8')"
+                  class="four">
+                  A8
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="840"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('A9')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="840"
+                  y="50"
+                  fill="#ffd600"
+                  onclick="selectSeat('A9')"
+                  class="four">
+                  A9
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="940"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('A10')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="940"
+                  y="50"
+                  fill="#ffd600"
+                  onclick="selectSeat('A10')"
+                  class="four">
+                  A10
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="40"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B1')"
+                  class="one" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="40"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B1')"
+                  class="one">
+                  B1
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="140"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B2')"
+                  class="two" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="140"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B2')"
+                  class="two">
+                  B2
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="240"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="three" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="240"
+                  y="150"
+                  fill="#000000"
+                  
+                  class="three">
+                  B3
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="340"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="340"
+                  y="150"
+                  fill="#000000"
+                  
+                  class="four">
+                  B4
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="440"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="440"
+                  y="150"
+                  fill="#000000"
+                  
+                  class="four">
+                  B5
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="540"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="540"
+                  y="150"
+                  fill="#000000"
+                  
+                  class="four">
+                  B6
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="640"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="640"
+                  y="150"
+                  fill="#000000"
+                  
+                  class="four">
+                  B7
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="740"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="740"
+                  y="150"
+                  fill="#000000"
+                  
+                  class="four">
+                  B8
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="840"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B9')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="840"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B9')"
+                  class="four">
+                  B9
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="940"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B10')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="940"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B10')"
+                  class="four">
+                  B10
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="40"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C1')"
+                  class="one" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="40"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C1')"
+                  class="one">
+                  C1
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="140"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C2')"
+                  class="two" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="140"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C2')"
+                  class="two">
+                  C2
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="240"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="three" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="240"
+                  y="250"
+                  fill="#000000"
+                  
+                  class="three">
+                  C3
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="340"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C4')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="340"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C4')"
+                  class="four">
+                  C4
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="440"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="440"
+                  y="250"
+                  fill="#000000"
+                  
+                  class="four">
+                  C5
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="540"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="540"
+                  y="250"
+                  fill="#000000"
+                  
+                  class="four">
+                  C6
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="640"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C7')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="640"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C7')"
+                  class="four">
+                  C7
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="740"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C8')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="740"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C8')"
+                  class="four">
+                  C8
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="840"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C9')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="840"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C9')"
+                  class="four">
+                  C9
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="940"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C10')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="940"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C10')"
+                  class="four">
+                  C10
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="40"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('D1')"
+                  class="one" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="40"
+                  y="350"
+                  fill="#ffd600"
+                  onclick="selectSeat('D1')"
+                  class="one">
+                  D1
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="140"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('D2')"
+                  class="two" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="140"
+                  y="350"
+                  fill="#ffd600"
+                  onclick="selectSeat('D2')"
+                  class="two">
+                  D2
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="240"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('D3')"
+                  class="three" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="240"
+                  y="350"
+                  fill="#ffd600"
+                  onclick="selectSeat('D3')"
+                  class="three">
+                  D3
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="340"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="340"
+                  y="350"
+                  fill="#000000"
+                  
+                  class="four">
+                  D4
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="440"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="440"
+                  y="350"
+                  fill="#000000"
+                  
+                  class="four">
+                  D5
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="540"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="540"
+                  y="350"
+                  fill="#000000"
+                  
+                  class="four">
+                  D6
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="640"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('D7')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="640"
+                  y="350"
+                  fill="#ffd600"
+                  onclick="selectSeat('D7')"
+                  class="four">
+                  D7
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="740"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="740"
+                  y="350"
+                  fill="#000000"
+                  
+                  class="four">
+                  D8
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="840"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('D9')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="840"
+                  y="350"
+                  fill="#ffd600"
+                  onclick="selectSeat('D9')"
+                  class="four">
+                  D9
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="940"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  class="four"
+                  onclick="selectSeat('D10')" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="940"
+                  y="350"
+                  fill="#ffd600"
+                  class="four"
+                  onclick="selectSeat('D10')">
+                  D10
+                </text>
+              </svg>
+              <svg class="circle d-none" width="1200" height="400" id="seatshk">
+                <circle
+                  cursor="pointer"
+                  cx="40"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  
+                  class="one"
+                  onclick="selectSeat('A1')" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="40"
+                  y="50"
+                  fill="#ffd600"
+                  
+                  class="one"
+                  onclick="selectSeat('A1')">
+                  A1
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="140"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('A2')"
+                  class="two" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="140"
+                  y="50"
+                  fill="#ffd600"
+                  onclick="selectSeat('A2')"
+                  class="two">
+                  A2
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="240"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('A3')"
+                  class="three" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="240"
+                  y="50"
+                  fill="#ffd600"
+                  onclick="selectSeat('A3')"
+                  class="three">
+                  A3
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="340"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('A4')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="340"
+                  y="50"
+                  fill="#ffd600"
+                  onclick="selectSeat('A4')"
+                  class="four">
+                  A4
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="440"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('A5')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="440"
+                  y="50"
+                  fill="#ffd600"
+                  onclick="selectSeat('A5')"
+                  class="four">
+                  A5
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="540"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('A6')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="540"
+                  y="50"
+                  fill="#ffd600"
+                  onclick="selectSeat('A6')"
+                  class="four">
+                  A6
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="640"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('A7')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="640"
+                  y="50"
+                  fill="#ffd600"
+                  onclick="selectSeat('A7')"
+                  class="four">
+                  A7
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="740"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('A8')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="740"
+                  y="50"
+                  fill="#ffd600"
+                  onclick="selectSeat('A8')"
+                  class="four">
+                  A8
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="840"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('A9')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="840"
+                  y="50"
+                  fill="#ffd600"
+                  onclick="selectSeat('A9')"
+                  class="four">
+                  A9
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="940"
+                  cy="50"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('A10')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="940"
+                  y="50"
+                  fill="#ffd600"
+                  onclick="selectSeat('A10')"
+                  class="four">
+                  A10
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="40"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B1')"
+                  class="one" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="40"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B1')"
+                  class="one">
+                  B1
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="140"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B2')"
+                  class="two" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="140"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B2')"
+                  class="two">
+                  B2
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="240"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B3')"
+                  class="three" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="240"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B3')"
+                  class="three">
+                  B3
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="340"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B4')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="340"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B4')"
+                  class="four">
+                  B4
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="440"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B5')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="440"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B5')"
+                  class="four">
+                  B5
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="540"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B6')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="540"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B6')"
+                  class="four">
+                  B6
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="640"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B7')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="640"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B7')"
+                  class="four">
+                  B7
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="740"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B8')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="740"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B8')"
+                  class="four">
+                  B8
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="840"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B9')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="840"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B9')"
+                  class="four">
+                  B9
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="940"
+                  cy="150"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('B10')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="940"
+                  y="150"
+                  fill="#ffd600"
+                  onclick="selectSeat('B10')"
+                  class="four">
+                  B10
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="40"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C1')"
+                  class="one" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="40"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C1')"
+                  class="one">
+                  C1
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="140"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="two" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="140"
+                  y="250"
+                  fill="#000000"
+                  
+                  class="two">
+                  C2
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="240"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="three" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="240"
+                  y="250"
+                  fill="#000000"
+                  
+                  class="three">
+                  C3
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="340"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C4')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="340"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C4')"
+                  class="four">
+                  C4
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="440"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C5')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="440"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C5')"
+                  class="four">
+                  C5
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="540"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C6')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="540"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C6')"
+                  class="four">
+                  C6
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="640"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C7')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="640"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C7')"
+                  class="four">
+                  C7
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="740"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C8')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="740"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C8')"
+                  class="four">
+                  C8
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="840"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C9')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="840"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C9')"
+                  class="four">
+                  C9
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="940"
+                  cy="250"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('C10')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="940"
+                  y="250"
+                  fill="#ffd600"
+                  onclick="selectSeat('C10')"
+                  class="four">
+                  C10
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="40"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('D1')"
+                  class="one" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="40"
+                  y="350"
+                  fill="#ffd600"
+                  onclick="selectSeat('D1')"
+                  class="one">
+                  D1
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="140"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('D2')"
+                  class="two" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="140"
+                  y="350"
+                  fill="#ffd600"
+                  onclick="selectSeat('D2')"
+                  class="two">
+                  D2
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="240"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('D3')"
+                  class="three" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="240"
+                  y="350"
+                  fill="#ffd600"
+                  onclick="selectSeat('D3')"
+                  class="three">
+                  D3
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="340"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="340"
+                  y="350"
+                  fill="#000000"
+                  
+                  class="four">
+                  D4
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="440"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('D5')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="440"
+                  y="350"
+                  fill="#ffd600"
+                  onclick="selectSeat('D5')"
+                  class="four">
+                  D5
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="540"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="540"
+                  y="350"
+                  fill="#000000"
+                  
+                  class="four">
+                  D6
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="640"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  onclick="selectSeat('D7')"
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="640"
+                  y="350"
+                  fill="#ffd600"
+                  onclick="selectSeat('D7')"
+                  class="four">
+                  D7
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="740"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="740"
+                  y="350"
+                  fill="#000000"
+                  
+                  class="four">
+                  D8
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="840"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#8E8E8E"
+                  
+                  class="four" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="840"
+                  y="350"
+                  fill="#000000"
+                  
+                  class="four">
+                  D9
+                </text>
+                <circle
+                  cursor="pointer"
+                  cx="940"
+                  cy="350"
+                  r="30"
+                  stroke="#2e7d32"
+                  stroke-width="2"
+                  fill="#14A44D"
+                  class="four"
+                  onclick="selectSeat('D10')" />
+                <text
+                  cursor="pointer"
+                  text-anchor="middle"
+                  alignment-baseline="central"
+                  x="940"
+                  y="350"
+                  fill="#ffd600"
+                  class="four"
+                  onclick="selectSeat('D10')">
+                  D10
+                </text>
+              </svg>              
+            <div id="selseat" class="text-start fs-4 fw-bold">
+              <p id="selseat" class="text-start fs-4 fw-bold"></p>
+            </div>
+            <br />
+            <div class="row mb-3 d-none justify-content-center" id="drinkdiv">
+              <img class="img-responsive w-25 object-fit-cover border rounded" src="" alt="" id="drinkimg" />
+            </div>
+            <div class="mb-3">
+              <div>
+                <label for="exampleFormControlInput1" class="form-label">Price:</label>
+                <input type="text" class="form-control" id="phone" name="phone" alt="phone" required />
+              </div>
+            </div-->
+            <!--div class="row mb-3 d-inline-block d-lg-flex">
+              <div class="col d-flex d-lg-block">
+                <label for="size" id="size">Price:</label>
+
+                <div class="mb-2 ms-2 ms-lg-0">
+                  <input
+                    type="radio"
+                    name="size"
+                    id="medium"
+                    value="Medium"
+                    class="btn-check"
+                    autocomplete="off"
+                    onchange="calculatePrice(this)" />
+                  <label for="medium" class="btn btn-outline-success">$300 </label>
+                </div>
+              </div>
+            </div-->
+
+            <!--div class="row mb-3">
+              <p class="fs-3 fw-bolder">Price: $<span id="price">0</span></p>
+              <div class="row mb-3 d-none message" id="alert">
+              </div>
+            </div-->
+            <button class="btn btn-success mt-4" role="button" value="Place Order" autocomplete="off">Submit</button>
+            <button type="reset" value="Reset" class="btn btn-danger mt-4" autocomplete="off">Reset</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+    </main>
+    <footer class="py-3 bg-success text-warning text-center fixed-bottom">
+      <div>&copy;21019565D&21089804D Project</div>
+      <div id="time"></div>
+    </footer>
+  </body>
+  <script>
+    const d = new Date();
+    let text = d.toLocaleString('en');
+    document.getElementById('time').innerHTML = text;
+  </script>
+</html>
