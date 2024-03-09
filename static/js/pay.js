@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (data.status === 'success') {
       alert('Payment successful!');
-      window.open('/book.html', '_self');
+      window.open('/eie4432_project/static/book.html', '_self');
     }
   });
 });
